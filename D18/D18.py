@@ -132,13 +132,13 @@ class Pond:
         self._water_max = max(x) + 1, max(y) + 1, max(z) + 1
 
         # fill exterior space with water!
-        queue = [self._water_min]
+        queue = {self._water_min}
         while queue:
             self.add_water(queue, self._water_min, self._water_max)
 
     def add_water(self, queue, min_boundary, max_boundary):
         """Adds a block of water, populates queue with additional space for water"""
-        new_block = Water(queue.pop(0), min_boundary, max_boundary)
+        new_block = Water(queue.pop(), min_boundary, max_boundary)
         # Only add the block if it doesn't already exist.
         self._water.setdefault(new_block.location, new_block)
 
@@ -155,7 +155,7 @@ class Pond:
                     water_block.add_adjacent(new_block)
                     new_block.add_adjacent(water_block)
                 elif side not in queue:
-                    queue.append(side)
+                    queue.add(side)
 
     def water_surface_area(self):
         """Counts surfaces of water in contact with obsidian."""

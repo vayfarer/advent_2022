@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89fdd33f-8e9a-4cc4-a4bb-3d41f2e3d889" name="Changes" comment="12/17/2022">
-      <change afterPath="$PROJECT_DIR$/D18/D18.py" afterDir="false" />
+    <list default="true" id="89fdd33f-8e9a-4cc4-a4bb-3d41f2e3d889" name="Changes" comment="12/18/2022">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/D16/D16.py" beforeDir="false" afterPath="$PROJECT_DIR$/D16/D16.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/D17/D17.py" beforeDir="false" afterPath="$PROJECT_DIR$/D17/D17.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/D18/D18.py" beforeDir="false" afterPath="$PROJECT_DIR$/D18/D18.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +141,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671332896618</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="12/18/2022">
+      <created>1671399938082</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671399938082</updated>
+    </task>
+    <task id="LOCAL-00006" summary="12/18/2022">
+      <created>1671399984763</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671399984763</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -158,6 +172,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="12/16/2022" />
     <MESSAGE value="12/17/2022" />
-    <option name="LAST_COMMIT_MESSAGE" value="12/17/2022" />
+    <MESSAGE value="12/18/2022" />
+    <option name="LAST_COMMIT_MESSAGE" value="12/18/2022" />
   </component>
 </project>
