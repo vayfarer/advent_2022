@@ -1,4 +1,4 @@
-# Advent of Code 2022, Day 17, Part 1
+# Advent of Code 2022, Day 17, Part 1 and 2
 # Michael Chen
 # 12/17/2022
 
