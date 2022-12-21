@@ -189,7 +189,7 @@ if __name__ == "__main__":
     y_line = 2000000
 
     sensors = set()
-    no_beacon = set()
+    no_beacon = 0
     no_beacon_runs = {(0,-1)}
     beacons_on_line = set()
 
@@ -234,26 +234,33 @@ if __name__ == "__main__":
             x_start, x_end = sensor.x - dx, sensor.x + dx
 
             for run in no_beacon_runs.copy():
-                if run[0] < x_start < run[1]:
+                if run[0] <= x_start <= run[1] <= x_end:
                     no_beacon_runs.remove(run)
-                    no_beacon_runs.add((run[0], x_end))
-                    break
-                elif run[0] < x_end < run[1]:
+                    x_start = run[0]
+                elif x_start <= run[0] <= x_end <= run[1]:
                     no_beacon_runs.remove(run)
-                    no_beacon_runs.add((x_start, run[1]))
-                    break
-                else:
-                    no_beacon_runs.add((x_start, x_end))
+                    x_end = run[1]
+                elif run[0] <= x_start and x_end <= run[1]:
+                    x_start, x_end = run[0], run[1]
+                elif x_start <= run[0] <= run[1] <= x_end:
+                    no_beacon_runs.remove(run)
+
+            no_beacon_runs.add((x_start,x_end))
 
     # dummy run to trigger loop conditions above.
     no_beacon_runs.remove((0,-1))
 
-    for run in no_beacon_runs:
-        no_beacon.update(set(range(run[0], run[1] + 1)))
+    for run in no_beacon_runs.copy():
+        no_beacon += run[1] - run[0] + 1
 
     # remove any beacons which occur on the line.
-    no_beacon.difference_update(beacons_on_line)
-    print(f'{len(no_beacon)} points cannot be beacons on line {y_line}')
+    for beacon in beacons_on_line:
+        for run in no_beacon_runs:
+            if run[0] <= beacon <= run[1]:
+                no_beacon -=1
+                break
+
+    print(f'{no_beacon} points cannot be beacons on line {y_line}') #5525990
 
     # If the missing beacon occurs in the middle of the space, it must be
     # contained by two pairs of sensors which are exactly two apart in coverage.
@@ -276,8 +283,6 @@ if __name__ == "__main__":
             point = pair_i.intersect(pair_j)
             if point:
                 intersections.add(Beacon(point))
-
-    intersections_copy = intersections.copy()
 
     for point in intersections.copy():
         for sensor in sensors:
