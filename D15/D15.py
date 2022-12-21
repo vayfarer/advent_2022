@@ -190,6 +190,7 @@ if __name__ == "__main__":
 
     sensors = set()
     no_beacon = set()
+    no_beacon_runs = {(0,-1)}
     beacons_on_line = set()
 
     with open('input.txt') as f:
@@ -230,9 +231,25 @@ if __name__ == "__main__":
         dy = abs(y_line - sensor.y)
         if sensor.radius >= dy:
             dx = abs(sensor.radius - dy)
-            x_start = sensor.x - dx
-            x_end = sensor.x + dx
-            no_beacon = no_beacon.union(set(range(x_start, x_end + 1)))
+            x_start, x_end = sensor.x - dx, sensor.x + dx
+
+            for run in no_beacon_runs.copy():
+                if run[0] < x_start < run[1]:
+                    no_beacon_runs.remove(run)
+                    no_beacon_runs.add((run[0], x_end))
+                    break
+                elif run[0] < x_end < run[1]:
+                    no_beacon_runs.remove(run)
+                    no_beacon_runs.add((x_start, run[1]))
+                    break
+                else:
+                    no_beacon_runs.add((x_start, x_end))
+
+    # dummy run to trigger loop conditions above.
+    no_beacon_runs.remove((0,-1))
+
+    for run in no_beacon_runs:
+        no_beacon.update(set(range(run[0], run[1] + 1)))
 
     # remove any beacons which occur on the line.
     no_beacon.difference_update(beacons_on_line)
@@ -257,7 +274,6 @@ if __name__ == "__main__":
         other_pairs.remove(pair_i)
         for pair_j in other_pairs:
             point = pair_i.intersect(pair_j)
-            print(point)
             if point:
                 intersections.add(Beacon(point))
 
