@@ -3,19 +3,6 @@
 # 12/31/2022
 
 def monkey(func:str, library:dict):
-    """Executes `func`, a key to a function defined as a string in `library`."""
-
-    expr = library[func]
-    if type(expr) is int:
-        return expr
-
-    # Assuming all func calls two other func.
-    func1, op, func2 = expr.split(' ')
-
-    eval_str = 'monkey("' +func1+ '",library)' + op + 'monkey("'+func2+'",library)'
-    return eval(eval_str)
-
-def monkey_do(func:str, library:dict):
     """Evaluates all expressions under func in library."""
 
     expr = library[func]
@@ -25,7 +12,7 @@ def monkey_do(func:str, library:dict):
     # Assuming all func calls two other func.
     func1, op, func2 = expr.split(' ')
 
-    eval_str = 'monkey_do("'+func1+'", library)' + op + 'monkey_do("'+func2+'", library)'
+    eval_str = 'monkey("'+func1+'", library)' + op + 'monkey("'+func2+'", library)'
     library[func] = eval(eval_str)
     return library[func]
 
@@ -36,36 +23,39 @@ def find_humn(library:dict):
     # jiggle is used to find which side is affected by 'humn'.
     jiggle = library.copy()
     jiggle['humn'] = library['humn'] + 1
-    # evaluate all expressions in jiggle once.
-    monkey_do('root', jiggle)
+    # evaluate all expressions in libraries once.
+    monkey('root', jiggle)
+
+    library_eval = library.copy()
+    monkey('root', library_eval)
 
     library['root'] = library['root'].replace('+','=')
 
     def reverse_op():
         match op:
             case '+':
-                return target - monkey(other_func, library)
+                return target - library_eval[other_func]
             case '-':
                 if func == func1:
-                    return target + monkey(other_func, library)
+                    return target + library_eval[other_func]
                 else:
-                    return monkey(other_func, library) - target
+                    return library_eval[other_func] - target
             case '*':
-                return target / monkey(other_func, library)
+                return target / library_eval[other_func]
             case '/':
                 if func == func1:
-                    return target * monkey(other_func, library)
+                    return target * library_eval[other_func]
                 else:
-                    return monkey(other_func, library) / target
+                    return library_eval[other_func] / target
             case '=':
-                return monkey(other_func, library)
+                return library_eval[other_func]
 
     func = 'root'
     while func != 'humn':
         expr = library[func]
         func1, op, func2 = expr.split(' ')
 
-        if monkey(func1, library) != jiggle[func1]:
+        if library_eval[func1] != jiggle[func1]:
             func = func1
             other_func = func2
         else:
@@ -90,8 +80,8 @@ if __name__ == "__main__":
         key, colon, val = line.partition(': ')
         library[key] = int(val) if val.isnumeric() else val
 
-    print("'root' yells: ", monkey('root',library))
-    print("'humn' yells: ",find_humn(library))
+    print("'root' yells: ", monkey('root', library.copy()))
+    print("'humn' yells: ", find_humn(library))
 
 
 
