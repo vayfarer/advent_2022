@@ -9,7 +9,7 @@ with open('input.txt') as f:
     input1 = f.read()
 
 lines = input1.split('\n')
-print(lines)
+
 for line in lines:
     line = line.strip()
     if line:
