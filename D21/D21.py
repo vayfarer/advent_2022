@@ -15,15 +15,31 @@ def monkey(func:str, library:dict):
     eval_str = 'monkey("' +func1+ '",library)' + op + 'monkey("'+func2+'",library)'
     return eval(eval_str)
 
+def monkey_do(func:str, library:dict):
+    """Evaluates all expressions under func in library."""
+
+    expr = library[func]
+    if type(expr) is int:
+        return expr
+
+    # Assuming all func calls two other func.
+    func1, op, func2 = expr.split(' ')
+
+    eval_str = 'monkey_do("'+func1+'", library)' + op + 'monkey_do("'+func2+'", library)'
+    library[func] = eval(eval_str)
+    return library[func]
+
 def find_humn(library:dict):
     """Starts at 'root' in library and finds the humn value needed to set both
     sides of 'root' equal to each other."""
 
-    library['root'] = library['root'].replace('+','=')
-
     # jiggle is used to find which side is affected by 'humn'.
     jiggle = library.copy()
     jiggle['humn'] = library['humn'] + 1
+    # evaluate all expressions in jiggle once.
+    monkey_do('root', jiggle)
+
+    library['root'] = library['root'].replace('+','=')
 
     def reverse_op():
         match op:
@@ -49,7 +65,7 @@ def find_humn(library:dict):
         expr = library[func]
         func1, op, func2 = expr.split(' ')
 
-        if monkey(func1, library) != monkey(func1, jiggle):
+        if monkey(func1, library) != jiggle[func1]:
             func = func1
             other_func = func2
         else:

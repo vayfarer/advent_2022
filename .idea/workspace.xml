@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89fdd33f-8e9a-4cc4-a4bb-3d41f2e3d889" name="Changes" comment="12/30/2022">
-      <change afterPath="$PROJECT_DIR$/D21/D21.py" afterDir="false" />
+    <list default="true" id="89fdd33f-8e9a-4cc4-a4bb-3d41f2e3d889" name="Changes" comment="12/31/2022">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/D16/D16.py" beforeDir="false" afterPath="$PROJECT_DIR$/D16/D16.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/D17/D17.py" beforeDir="false" afterPath="$PROJECT_DIR$/D17/D17.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/D21/D21.py" beforeDir="false" afterPath="$PROJECT_DIR$/D21/D21.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672474577501</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="12/31/2022">
+      <created>1672505664043</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672505664043</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -297,7 +304,8 @@
     <MESSAGE value="12/18/2022" />
     <MESSAGE value="12/21/2022" />
     <MESSAGE value="12/30/2022" />
-    <option name="LAST_COMMIT_MESSAGE" value="12/30/2022" />
+    <MESSAGE value="12/31/2022" />
+    <option name="LAST_COMMIT_MESSAGE" value="12/31/2022" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
